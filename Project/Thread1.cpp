@@ -93,7 +93,7 @@ void *Receiver(void *ptr){
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
-        if(input_buffer == "HI"){
+        if(strcmp(input_buffer, "HI") == 0){
             cout << "MESSAGE matched 'HI'" << endl;
         }
 
