@@ -86,16 +86,18 @@ void *Receiver(void *ptr){
         //TL
         cout << "return_msg:" << return_msg << endl;
 
-        // Convert data in either upper or lowercase for standardization
-        for(int i = 0; i < nBytes-1; i++)
-            input_buffer[i] = toupper(return_msg[i]);
 
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
-        if(strcmp(input_buffer, "HI") >= 0){
+        if(strcmp(input_buffer, "HI") == 0){
             cout << "MESSAGE matched 'HI'" << endl;
         }
+
+                // Convert data in either upper or lowercase for standardization
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer[i] = toupper(return_msg[i]);
+
 
         // // Convert data in either upper or lowercase for standardization
         // for(int i = 0; i < nBytes-1; i++)
