@@ -160,8 +160,8 @@ void *Sending(void *ptr){
 
         sendto(clientSocket, input_buffer, nBytes, 0, 
         (struct sockaddr * )&serverAddr, addr_size);
-        nBytes = recvfrom(clientSocket, received_msg, 1024, 0, NULL, NULL);
-        cout << received_msg << endl;
+        // nBytes = recvfrom(clientSocket, received_msg, 1024, 0, NULL, NULL);
+        // cout << received_msg << endl;
 
     }while(strncmp(input_buffer, "Quit", strlen(input_buffer)-1) != 0);
 
