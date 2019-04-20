@@ -125,8 +125,13 @@ void *Sending(void *ptr){
     do{
 
         cout << "Type a sentence to send to your buddy: ";
-        cin.getline(input_buffer, 1024, '\n');
-        nBytes = strlen(input_buffer)+1;
+        cin.getline(buffer, 1024, '\n');
+        nBytes = strlen(buffer)+1;
+
+
+        // Convert data in either upper or lowercase for standardization
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer [i] = toupper(buffer[i]);
 
         //TL
         //cout << "output will be: " << input_buffer << " size of: " << nBytes << endl;
