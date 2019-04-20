@@ -90,11 +90,12 @@ void *Receiver(void *ptr){
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
-        if(strcmp(input_buffer, "HI") == 0){
-            cout << "MESSAGE matched 'HI'" << endl;
+        string a =  "BANANA";
+        if(strcmp(return_msg, "HI") == 0){
+            strcpy(buffer, a.c_str());
         }
 
-                // Convert data in either upper or lowercase for standardization
+        // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
             input_buffer[i] = toupper(return_msg[i]);
 
