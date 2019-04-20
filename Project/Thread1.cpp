@@ -149,7 +149,7 @@ void *Sending(void *ptr){
             strcpy (input_buffer, d.c_str());
         }
 
-        cout << input_buffer << endl;
+        cout << return_msg << endl;
 
 
 
