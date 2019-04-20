@@ -90,8 +90,12 @@ void *Receiver(void *ptr){
         for(int i = 0; i < nBytes-1; i++)
             input_buffer [i] = toupper(return_msg[i]);
 
-        //TL
+        //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
+
+        if(input_buffer == "HI"){
+            cout << "MESSAGE matched 'HI'" << endl;
+        }
 
         // // Convert data in either upper or lowercase for standardization
         // for(int i = 0; i < nBytes-1; i++)
@@ -154,6 +158,7 @@ void *Sending(void *ptr){
         cin.getline(buffer, 1024, '\n');
         nBytes = strlen(buffer)+1;
     
+        //shows typed information
         cout << "input buffer:" << input_buffer << endl;
 
         sendto(clientSocket, buffer, nBytes, 0, 
