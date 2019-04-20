@@ -130,26 +130,26 @@ void *Sending(void *ptr){
 
         // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
-            return_msg[i] = toupper(buffer[i]);
+            input_buffer [i] = toupper(buffer[i]);
 
-        if(return_msg == "MONKEY"){
+        if(buffer == "MONKEY"){
             string a =  "BANANA";
             strcpy (input_buffer, a.c_str());
-        }else if(return_msg == "ELEPHANT"){
+        }else if(buffer == "ELEPHANT"){
             string b = "MOUSE";
             strcpy (input_buffer, b.c_str());
-        }else if(return_msg == "FLOWER"){
+        }else if(buffer == "FLOWER"){
             string c = "BEAUTIFUL";
             strcpy (input_buffer, c.c_str());
-        }else if(return_msg == "HOUSE"){
+        }else if(buffer == "HOUSE"){
             string d = "SAFE";
             strcpy (input_buffer, d.c_str());
-        }else if(return_msg == "CAR"){
+        }else if(buffer == "CAR"){
             string d = "FAST";
             strcpy (input_buffer, d.c_str());
         }
 
-        cout << return_msg << endl;
+        cout << input_buffer << endl;
 
 
 
