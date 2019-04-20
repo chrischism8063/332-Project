@@ -15,7 +15,7 @@ using namespace std;
 void *Receiver(void *ptr);
 void *Sending(void *ptr);
 
-char buffer[1024], port_string[10], ip_string[17], return_msg[1024];;
+char buffer[1024], port_string[10], ip_string[17], return_msg[1024], input_buffer[1024];
 
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
@@ -84,12 +84,12 @@ void *Receiver(void *ptr){
             (struct sockaddr *)&serverStorage, &addr_size);
 
         //TL
-        cout << "I received: " << buffer << "size: " << nBytes << endl;
+        cout << buffer << endl;
 
         // Convert data in either upper or lowercase for standardization
-        //for(int i = 0; i < nBytes-1; i++)
-            //return_msg[i] = toupper(buffer[i]);
-        
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer [i] = toupper(buffer[i]);
+
         //eturn_msg[strlen(buffer)] = 0;
         // When wanting to send back to server/client, always use sendto()
         //sendto(udpSocket, return_msg, strlen(return_msg), 0, 
@@ -105,7 +105,6 @@ void *Sending(void *ptr){
 
     //Inserted Client here
     int clientSocket, portNum, nBytes;
-    char input_buffer[1024];
     char received_msg[1024];
 
     struct sockaddr_in serverAddr;
@@ -133,30 +132,22 @@ void *Sending(void *ptr){
         //cout << "output will be: " << input_buffer << " size of: " << nBytes << endl;
 
 
-        // //First checks to see if input buffer is null
-        // if(buffer == NULL){
-        //     cout << "Type a sentence to send to your buddy: ";
-        //     cin.getline(input_buffer, 1024, '\n');
-        //     nBytes = strlen(input_buffer)+1;
-
-        //     //TL
-        //     cout << input_buffer << " " << nBytes << endl;
-        // }else if(buffer == "monkey"){
-        //     string a =  "banana";
-        //     strcpy (input_buffer, a.c_str());
-        // }else if(buffer == "elephant"){
-        //     string b = "mouse";
-        //     strcpy (input_buffer, b.c_str());
-        // }else if(buffer == "flower"){
-        //     string c = "beautiful";
-        //     strcpy (input_buffer, c.c_str());
-        // }else if(buffer == "house"){
-        //     string d = "safe";
-        //     strcpy (input_buffer, d.c_str());
-        // }else if(buffer == "car"){
-        //     string d = "fast";
-        //     strcpy (input_buffer, d.c_str());
-        // }
+        if(buffer == "MONKEY"){
+            string a =  "BANANA";
+            strcpy (input_buffer, a.c_str());
+        }else if(buffer == "ELEPHANT"){
+            string b = "MOUSE";
+            strcpy (input_buffer, b.c_str());
+        }else if(buffer == "FLOWER"){
+            string c = "BEAUTIFUL";
+            strcpy (input_buffer, c.c_str());
+        }else if(buffer == "HOUSE"){
+            string d = "SAFE";
+            strcpy (input_buffer, d.c_str());
+        }else if(buffer == "CAR"){
+            string d = "FAST";
+            strcpy (input_buffer, d.c_str());
+        }
 
         sendto(clientSocket, input_buffer, nBytes, 0, 
         (struct sockaddr * )&serverAddr, addr_size);
