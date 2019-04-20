@@ -88,7 +88,7 @@ void *Receiver(void *ptr){
 
         // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
-            input_buffer [i] = toupper(return_msg[i]);
+            input_buffer[i] = toupper(return_msg[i]);
 
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
