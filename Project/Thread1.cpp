@@ -128,15 +128,6 @@ void *Sending(void *ptr){
         cin.getline(buffer, 1024, '\n');
         nBytes = strlen(buffer)+1;
 
-
-        // Convert data in either upper or lowercase for standardization
-        for(int i = 0; i < nBytes-1; i++)
-            input_buffer [i] = toupper(buffer[i]);
-
-        //TL
-        //cout << "output will be: " << input_buffer << " size of: " << nBytes << endl;
-
-
         if(buffer == "MONKEY"){
             string a =  "BANANA";
             strcpy (input_buffer, a.c_str());
@@ -153,6 +144,12 @@ void *Sending(void *ptr){
             string d = "FAST";
             strcpy (input_buffer, d.c_str());
         }
+
+        cout << input_buffer << endl;
+
+        // Convert data in either upper or lowercase for standardization
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer [i] = toupper(buffer[i]);
 
         sendto(clientSocket, input_buffer, nBytes, 0, 
         (struct sockaddr * )&serverAddr, addr_size);
