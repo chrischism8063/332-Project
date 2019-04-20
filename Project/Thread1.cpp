@@ -87,13 +87,13 @@ void *Receiver(void *ptr){
         cout << "I received: " << buffer << "size: " << nBytes << endl;
 
         // Convert data in either upper or lowercase for standardization
-        for(int i = 0; i < nBytes-1; i++)
-            return_msg[i] = toupper(buffer[i]);
+        //for(int i = 0; i < nBytes-1; i++)
+            //return_msg[i] = toupper(buffer[i]);
         
-        return_msg[strlen(buffer)] = 0;
+        //eturn_msg[strlen(buffer)] = 0;
         // When wanting to send back to server/client, always use sendto()
-        sendto(udpSocket, return_msg, strlen(return_msg), 0, 
-        (struct sockaddr *)&serverStorage, addr_size);
+        //sendto(udpSocket, return_msg, strlen(return_msg), 0, 
+        //(struct sockaddr *)&serverStorage, addr_size);
     }while(strncmp(buffer, "Quit", strlen(buffer)-1) != 0);
    
     return NULL;
@@ -130,7 +130,7 @@ void *Sending(void *ptr){
         nBytes = strlen(input_buffer)+1;
 
         //TL
-        cout << "output will be: " << input_buffer << " size of: " << nBytes << endl;
+        //cout << "output will be: " << input_buffer << " size of: " << nBytes << endl;
 
 
         // //First checks to see if input buffer is null
