@@ -123,6 +123,10 @@ void *Sending(void *ptr){
         cout << "Type a sentence to send to your buddy: ";
         cin.getline(buffer, 1024, '\n');
 
+        //Send to is fine as is
+        nBytes = strlen(buffer)+1;
+        sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
+
         string a =  "BANANA";
         string b =  "MOUSE";
         string c =  "BEAUTIFUL";
@@ -130,23 +134,30 @@ void *Sending(void *ptr){
         string e =  "FAST";
         if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
             strcpy(buffer, a.c_str());
+            //Send to is fine as is
+            nBytes = strlen(buffer)+1;
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
         }else if(strncmp(return_msg, "ELEPHANT", strlen(return_msg)-1) == 0){
             strcpy(buffer, b.c_str());
+            //Send to is fine as is
+            nBytes = strlen(buffer)+1;
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);            
         }else if(strncmp(return_msg, "FLOWER", strlen(return_msg)-1) == 0){
             strcpy(buffer, c.c_str());
+            //Send to is fine as is
+            nBytes = strlen(buffer)+1;
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
         }else if(strncmp(return_msg, "HOUSE", strlen(return_msg)-1) == 0){
             strcpy(buffer, d.c_str());
+            //Send to is fine as is
+            nBytes = strlen(buffer)+1;
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
         }else if(strncmp(return_msg, "CAR", strlen(return_msg)-1) == 0){
             strcpy(buffer, e.c_str());
+            //Send to is fine as is
+            nBytes = strlen(buffer)+1;
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
         }
-
-
-
-
-
-        //Send to is fine as is
-        nBytes = strlen(buffer)+1;
-        sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
 
     return NULL;
