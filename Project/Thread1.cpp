@@ -138,11 +138,7 @@ void *Sending(void *ptr){
         }else if(strncmp(return_msg, "CAR", strlen(return_msg)-1) == 0){
             strcpy(buffer, e.c_str());
         }
-
-
-
-
-
+        
         //Send to is fine as is
         nBytes = strlen(buffer)+1;
         sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
