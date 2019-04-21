@@ -88,7 +88,7 @@ void *Receiver(void *ptr){
         input_buffer[strlen(return_msg)] = 0;
 
         //TL--received message pushing out--pushes out keyword onces switching sides in chat..idk
-        cout << endl << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
+        cout << endl << "Received:----> " << input_buffer << endl;
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
    
     return NULL;
