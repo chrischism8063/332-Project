@@ -87,23 +87,6 @@ void *Receiver(void *ptr){
             input_buffer[i] = toupper(return_msg[i]);
         input_buffer[strlen(return_msg)] = 0;
 
-        string a =  "BANANA";
-        string b =  "MOUSE";
-        string c =  "BEAUTIFUL";
-        string d =  "SAFE";
-        string e =  "FAST";
-        if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
-            strcpy(buffer, a.c_str());
-        }else if(strncmp(return_msg, "ELEPHANT", strlen(return_msg)-1) == 0){
-            strcpy(buffer, b.c_str());
-        }else if(strncmp(return_msg, "FLOWER", strlen(return_msg)-1) == 0){
-            strcpy(buffer, c.c_str());
-        }else if(strncmp(return_msg, "HOUSE", strlen(return_msg)-1) == 0){
-            strcpy(buffer, d.c_str());
-        }else if(strncmp(return_msg, "CAR", strlen(return_msg)-1) == 0){
-            strcpy(buffer, e.c_str());
-        }
-
         //TL--received message pushing out--pushes out keyword onces switching sides in chat..idk
         cout << endl << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
@@ -136,9 +119,29 @@ void *Sending(void *ptr){
     addr_size = sizeof serverAddr;
 
     do{
-
         cout << "Type a sentence to send to your buddy: ";
         cin.getline(buffer, 1024, '\n');
+
+        string a =  "BANANA";
+        string b =  "MOUSE";
+        string c =  "BEAUTIFUL";
+        string d =  "SAFE";
+        string e =  "FAST";
+        if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
+            strcpy(buffer, a.c_str());
+        }else if(strncmp(return_msg, "ELEPHANT", strlen(return_msg)-1) == 0){
+            strcpy(buffer, b.c_str());
+        }else if(strncmp(return_msg, "FLOWER", strlen(return_msg)-1) == 0){
+            strcpy(buffer, c.c_str());
+        }else if(strncmp(return_msg, "HOUSE", strlen(return_msg)-1) == 0){
+            strcpy(buffer, d.c_str());
+        }else if(strncmp(return_msg, "CAR", strlen(return_msg)-1) == 0){
+            strcpy(buffer, e.c_str());
+        }
+
+
+
+
 
         //Send to is fine as is
         nBytes = strlen(buffer)+1;
