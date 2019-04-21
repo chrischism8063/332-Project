@@ -15,7 +15,7 @@ using namespace std;
 void *Receiver(void *ptr);
 void *Sending(void *ptr);
 
-char buffer[1024], port_string[10], ip_string[17], return_msg[1024], input_buffer[1024];
+char listen_port[10], buffer[1024], port_string[10], ip_string[17], return_msg[1024], input_buffer[1024];
 
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
@@ -28,7 +28,7 @@ int main(){
     int iret1, iret2;
 
     cout << "Please enter your listening port: ";
-    cin >> buffer;
+    cin >> listen_port;
 
     cout << "Please enter your buddy's port:";
     cin >> port_string;
@@ -73,7 +73,7 @@ void *Receiver(void *ptr){
     udpSocket = socket(PF_INET, SOCK_DGRAM, 0);
     serverAddr.sin_family = AF_INET;
 
-    serverAddr.sin_port = htons(atoi(buffer));
+    serverAddr.sin_port = htons(atoi(listen_port));
     serverAddr.sin_addr.s_addr = INADDR_ANY;
     memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
     bind(udpSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr));
