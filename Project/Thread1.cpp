@@ -130,18 +130,17 @@ void *Sending(void *ptr){
         nBytes = strlen(buffer)+1;
         return_msg[strlen(buffer)] = 0;
 
-        sendto(clientSocket, buffer, nBytes, 0, 
-        (struct sockaddr * )&serverAddr, addr_size);
 
         string a =  "BANANA";
         if(strncmp(return_msg, "HI", strlen(return_msg)-1) == 0){
             strcpy(buffer, a.c_str());
             cout << "THIS IS A MATCH DUDE" << endl;
+
+            cout << "new buffer is)---(" << buffer << ")--(";
         }
 
-        // nBytes = recvfrom(clientSocket, received_msg, 1024, 0, NULL, NULL);
-        // cout << received_msg << endl;
 
+        sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
     }while(strncmp(buffer, "Quit", strlen(buffer)-1) != 0);
 
     return NULL;
