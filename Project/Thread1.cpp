@@ -88,10 +88,10 @@ void *Receiver(void *ptr){
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
-        string a =  "BANANA";
-        if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
-            strcpy(buffer, a.c_str());
-        }
+        // Convert data in either upper or lowercase for standardization
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer[i] = toupper(return_msg[i]);
+        input_buffer[strlen(return_msg)] = 0;
 
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
    
@@ -125,12 +125,12 @@ void *Sending(void *ptr){
     do{
 
         cout << "Type a sentence to send to your buddy: ";
-        cin.getline(input_buffer, 1024, '\n');
+        cin.getline(buffer, 1024, '\n');
 
-        // Convert data in either upper or lowercase for standardization
-        for(int i = 0; i < nBytes-1; i++)
-            buffer[i] = toupper(input_buffer[i]);
-        buffer[strlen(input_buffer)] = 0;
+        string a =  "BANANA";
+        if(strncmp(input_buffer, "MONKEY", strlen(input_buffer)-1) == 0){
+            strcpy(buffer, a.c_str());
+        }
 
         //Send to is fine as is
         nBytes = strlen(buffer)+1;
