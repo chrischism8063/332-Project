@@ -80,10 +80,19 @@ void *Receiver(void *ptr){
     
     addr_size = sizeof serverStorage;
     do{
-        nBytes = recvfrom(udpSocket, return_msg, 1024, 0, 
-            (struct sockaddr *)&serverStorage, &addr_size);
+        nBytes = recvfrom(udpSocket, return_msg, 1024, 0, (struct sockaddr *)&serverStorage, &addr_size);
+
         //TL
         cout << "return_msg:" << return_msg << endl;
+
+        //TL--received message pushing out
+        cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
+
+        // Convert data in either upper or lowercase for standardization
+        for(int i = 0; i < nBytes-1; i++)
+            input_buffer[i] = toupper(return_msg[i]);
+        input_buffer[strlen(return_msg)] = 0;
+
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
    
     return NULL;
@@ -105,6 +114,7 @@ void *Sending(void *ptr){
 
     //Assign integer into port number variable
     portNum = atoi(port_string);
+
     //Port number comes from user
     serverAddr.sin_port = htons(portNum);
 
@@ -113,21 +123,17 @@ void *Sending(void *ptr){
     addr_size = sizeof serverAddr;
 
     do{
+
         cout << "Type a sentence to send to your buddy: ";
         cin.getline(buffer, 1024, '\n');
 
         string a =  "BANANA";
-        if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
+        if(strncmp(input_buffer, "MONKEY", strlen(input_buffer)-1) == 0){
             strcpy(buffer, a.c_str());
         }
 
         //Send to is fine as is
         nBytes = strlen(buffer)+1;
-
-        // Convert data in either upper or lowercase for standardization
-        for(int i = 0; i < nBytes-1; i++)
-            buffer[i] = toupper(return_msg[i]);
-
         sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr * )&serverAddr, addr_size);
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
 
