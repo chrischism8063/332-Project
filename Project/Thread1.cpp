@@ -82,17 +82,13 @@ void *Receiver(void *ptr){
     do{
         nBytes = recvfrom(udpSocket, return_msg, 1024, 0, (struct sockaddr *)&serverStorage, &addr_size);
 
-        //TL
-        cout << "return_msg:" << return_msg << endl;
-
-        //TL--received message pushing out
-        cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
-
         // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
             input_buffer[i] = toupper(return_msg[i]);
         input_buffer[strlen(return_msg)] = 0;
 
+        //TL--received message pushing out
+        cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
     }while(strncmp(buffer, "QUIT", strlen(buffer)-1) != 0);
    
     return NULL;
@@ -128,7 +124,7 @@ void *Sending(void *ptr){
         cin.getline(buffer, 1024, '\n');
 
         string a =  "BANANA";
-        if(strncmp(input_buffer, "MONKEY", strlen(input_buffer)-1) == 0){
+        if(strncmp(return_msg, "MONKEY", strlen(return_msg)-1) == 0){
             strcpy(buffer, a.c_str());
         }
 
