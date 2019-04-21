@@ -91,42 +91,15 @@ void *Receiver(void *ptr){
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
         string a =  "BANANA";
-        if(strcmp(return_msg, "HI") == 0){
+        if(strncmp(return_msg, "HI", strlen(return_msg)-1) != 0){
             strcpy(buffer, a.c_str());
+            cout << "THIS IS A MATCH DUDE" << endl;
         }
 
         // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
             input_buffer[i] = toupper(return_msg[i]);
 
-
-        // // Convert data in either upper or lowercase for standardization
-        // for(int i = 0; i < nBytes-1; i++)
-        //     input_buffer[i] = toupper(buffer[i]);
-
-        // if(input_buffer == "MONKEY"){
-        //     string a =  "BANANA";
-        //     strcpy (return_msg, a.c_str());
-        // }else if(input_buffer == "ELEPHANT"){
-        //     string b = "MOUSE";
-        //     strcpy (input_buffer, b.c_str());
-        // }else if(input_buffer == "FLOWER"){
-        //     string c = "BEAUTIFUL";
-        //     strcpy (input_buffer, c.c_str());
-        // }else if(input_buffer == "HOUSE"){
-        //     string d = "SAFE";
-        //     strcpy (input_buffer, d.c_str());
-        // }else if(input_buffer == "CAR"){
-        //     string d = "FAST";
-        //     strcpy (input_buffer, d.c_str());
-        // }
-        //try to use to compare
-
-
-        //eturn_msg[strlen(buffer)] = 0;
-        // When wanting to send back to server/client, always use sendto()
-        //sendto(udpSocket, return_msg, strlen(return_msg), 0, 
-        //(struct sockaddr *)&serverStorage, addr_size);
     }while(strncmp(buffer, "Quit", strlen(buffer)-1) != 0);
    
     return NULL;
@@ -160,9 +133,7 @@ void *Sending(void *ptr){
         cout << "Type a sentence to send to your buddy: ";
         cin.getline(buffer, 1024, '\n');
         nBytes = strlen(buffer)+1;
-    
-        //shows typed information
-        cout << "input buffer:" << input_buffer << endl;
+        return_msg[strlen(buffer)] = 0;
 
         sendto(clientSocket, buffer, nBytes, 0, 
         (struct sockaddr * )&serverAddr, addr_size);
