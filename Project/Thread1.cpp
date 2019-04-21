@@ -90,11 +90,6 @@ void *Receiver(void *ptr){
         //TL--received message pushing out
         cout << "INPUT BUFFER TO UPPER: " << input_buffer << endl;
 
-        string a =  "BANANA";
-        if(strncmp(return_msg, "HI", strlen(return_msg)-1) != 0){
-            strcpy(buffer, a.c_str());
-            cout << "THIS IS A MATCH DUDE" << endl;
-        }
 
         // Convert data in either upper or lowercase for standardization
         for(int i = 0; i < nBytes-1; i++)
@@ -137,6 +132,13 @@ void *Sending(void *ptr){
 
         sendto(clientSocket, buffer, nBytes, 0, 
         (struct sockaddr * )&serverAddr, addr_size);
+
+        string a =  "BANANA";
+        if(strncmp(return_msg, "HI", strlen(return_msg)-1) == 0){
+            strcpy(buffer, a.c_str());
+            cout << "THIS IS A MATCH DUDE" << endl;
+        }
+
         // nBytes = recvfrom(clientSocket, received_msg, 1024, 0, NULL, NULL);
         // cout << received_msg << endl;
 
